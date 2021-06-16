@@ -10,11 +10,29 @@ connectDB();
 
 const app = express();
 
+// Custom middleware
+
+// app.use((req, res, next) => {
+//   console.log(req.originalUrl);
+//   next();
+// });
+
 app.get("/", (req, res) => {
   res.send("API is running");
 });
 
 app.use("/api/products", productRoutes);
+
+// Error middleware
+
+app.use((err, req, res, next) => {
+  const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+  res.status(statusCode);
+  res.json({
+    message: err.message,
+    stack: process.env.NODE_ENV === "production" ? null : err.stack,
+  });
+});
 
 const PORT = process.env.PORT || 5000;
 
