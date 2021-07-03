@@ -13,7 +13,6 @@ import {
 
 import Message from "../components/Message";
 import { addToCart, removeFromCart } from "../actions/cartActions";
-import { object } from "prop-types";
 
 const CartScreen = ({ match, location, history }) => {
   const productId = match.params.id;
