@@ -140,7 +140,7 @@ export const listMyOrders = () => async (dispatch, getState) => {
 
     dispatch({
       type: ORDER_LIST_MY_SUCCESS,
-      load: data,
+      payload: data,
     });
   } catch (error) {
     dispatch({
